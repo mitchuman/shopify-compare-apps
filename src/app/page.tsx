@@ -1,19 +1,11 @@
 'use client'
 
-import {
-	AppProvider,
-	Button,
-	CalloutCard,
-	Card,
-	FooterHelp,
-	Form,
-	FormLayout,
-	Layout,
-	Link,
-	Page,
-	TextField,
-} from '@shopify/polaris'
-import { ClipboardIcon, CodeIcon } from '@shopify/polaris-icons'
+import { AppProvider, Layout, Page } from '@shopify/polaris'
+import { CodeIcon } from '@shopify/polaris-icons'
+import Result from '@/ui/Result'
+import AppAdder from '@/ui/AppAdder'
+import AppList from '@/ui/AppList'
+import Footer from '@/ui/Footer'
 
 export default function page() {
 	const url = 'https://apps.shopify.com/compare?handles='
@@ -41,58 +33,19 @@ export default function page() {
 			>
 				<Layout>
 					<Layout.Section>
-						<CalloutCard
-							title="Comparison URL"
-							illustration="https://cdn.shopify.com/shopifycloud/shopify_dev/assets/icons/48/shopify-2x-533cfc728abb341ee379217370a0c5be8d1a555e47eae85abe657675f367a37d.png"
-							primaryAction={{
-								content: 'Copy URL',
-								icon: ClipboardIcon,
-								onAction: () => {
-									navigator.clipboard.writeText(url)
-								},
-							}}
-						>
-							<Link url={url} target="_blank">
-								{url}
-							</Link>
-						</CalloutCard>
+						<Result url={url} />
 					</Layout.Section>
 
 					<Layout.Section variant="oneHalf">
-						<Card>
-							<Form onSubmit={() => {}}>
-								<FormLayout>
-									<TextField
-										label="App URL or slug"
-										placeholder="https://apps.shopify.com/search-and-discovery"
-										autoComplete="off"
-									/>
-									<Button submit>Add</Button>
-								</FormLayout>
-							</Form>
-						</Card>
+						<AppAdder />
 					</Layout.Section>
 
 					<Layout.Section variant="oneHalf">
-						<Card>
-							<FooterHelp>
-								Start by adding apps to compare. You can find the URL or slug on
-								the Shopify App Store.
-							</FooterHelp>
-						</Card>
+						<AppList />
 					</Layout.Section>
 
 					<Layout.Section>
-						<FooterHelp>
-							Built by{' '}
-							<Link url="https://github.com/mitchuman" target="_blank">
-								mitchuman
-							</Link>
-							{' at '}
-							<Link url="https://human.marketing" target="_blank">
-								Human
-							</Link>
-						</FooterHelp>
+						<Footer />
 					</Layout.Section>
 				</Layout>
 			</Page>

@@ -13,7 +13,7 @@ import {
 	Page,
 	TextField,
 } from '@shopify/polaris'
-import { ClipboardIcon } from '@shopify/polaris-icons'
+import { ClipboardIcon, CodeIcon } from '@shopify/polaris-icons'
 
 export default function page() {
 	const url = 'https://apps.shopify.com/compare?handles='
@@ -27,6 +27,17 @@ export default function page() {
 					url: 'https://app.shopify.com',
 					target: '_blank',
 				}}
+				secondaryActions={[
+					{
+						content: 'GitHub',
+						icon: CodeIcon,
+						url: 'https://github.com/mitchuman/shopify-compare-apps',
+						target: '_blank',
+					},
+					// {
+					// 	content: 'Buy me a coffee',
+					// },
+				]}
 			>
 				<Layout>
 					<Layout.Section>
@@ -36,7 +47,9 @@ export default function page() {
 							primaryAction={{
 								content: 'Copy URL',
 								icon: ClipboardIcon,
-								onAction: () => {},
+								onAction: () => {
+									navigator.clipboard.writeText(url)
+								},
 							}}
 						>
 							<Link url={url} target="_blank">
@@ -45,7 +58,7 @@ export default function page() {
 						</CalloutCard>
 					</Layout.Section>
 
-					<Layout.Section>
+					<Layout.Section variant="oneHalf">
 						<Card>
 							<Form onSubmit={() => {}}>
 								<FormLayout>
@@ -57,6 +70,15 @@ export default function page() {
 									<Button submit>Add</Button>
 								</FormLayout>
 							</Form>
+						</Card>
+					</Layout.Section>
+
+					<Layout.Section variant="oneHalf">
+						<Card>
+							<FooterHelp>
+								Start by adding apps to compare. You can find the URL or slug on
+								the Shopify App Store.
+							</FooterHelp>
 						</Card>
 					</Layout.Section>
 

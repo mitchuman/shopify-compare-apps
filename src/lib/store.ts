@@ -8,7 +8,7 @@ type Props = {
 	reorder: (handle: App.App, amount: number) => void
 }
 
-export const useHandleStore = create<Props>((set, get) => ({
+export const useAppStore = create<Props>((set, get) => ({
 	handles: [],
 
 	add: (app: App.App) =>
@@ -42,3 +42,12 @@ export const useHandleStore = create<Props>((set, get) => ({
 		})
 	},
 }))
+
+const BASE_URL = 'https://apps.shopify.com/compare'
+
+export function getCompareUrl(handles: App.App[]) {
+	const url = new URL(BASE_URL)
+	url.searchParams.set('handles', handles.map((h) => h.handle).join(','))
+
+	return url.toString()
+}

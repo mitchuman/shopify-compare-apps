@@ -1,16 +1,10 @@
-import { useHandleStore } from '@/lib/store'
+import { getCompareUrl, useAppStore } from '@/lib/store'
 import { CalloutCard, Link } from '@shopify/polaris'
 import { ClipboardIcon } from '@shopify/polaris-icons'
 
-const BASE_URL = 'https://apps.shopify.com/compare'
-
 export default function Result({}: Props) {
-	const handles = useHandleStore((s) => s.handles)
-
-	const url = new URL(BASE_URL)
-	url.searchParams.set('handles', handles.map((h) => h.handle).join(','))
-
-	const finalUrl = url.toString()
+	const handles = useAppStore((state) => state.handles)
+	const finalUrl = getCompareUrl(handles)
 
 	return (
 		<CalloutCard

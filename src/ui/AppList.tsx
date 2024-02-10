@@ -1,6 +1,6 @@
 'use client'
 
-import { useHandleStore } from '@/lib/store'
+import { useAppStore } from '@/lib/store'
 import { useState } from 'react'
 import {
 	Card,
@@ -14,8 +14,8 @@ import AppListItem from './AppListItem'
 import { DeleteIcon } from '@shopify/polaris-icons'
 
 export default function AppList({}: Props) {
-	const handles = useHandleStore((s) => s.handles)
-	const removeHandles = useHandleStore((s) => s.removeHandles)
+	const handles = useAppStore((s) => s.handles)
+	const removeHandles = useAppStore((s) => s.removeHandles)
 
 	const [$selected, set$selected] =
 		useState<ResourceListProps['selectedItems']>()

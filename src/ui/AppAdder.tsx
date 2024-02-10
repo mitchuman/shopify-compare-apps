@@ -1,4 +1,4 @@
-import { useHandleStore } from '@/lib/store'
+import { useAppStore } from '@/lib/store'
 import {
 	Button,
 	Card,
@@ -12,7 +12,7 @@ import { useState } from 'react'
 export default function AppAdder({}: Props) {
 	const [$value, set$value] = useState<string | undefined>()
 	const [$error, set$error] = useState<string | false>(false)
-	const add = useHandleStore((s) => s.add)
+	const add = useAppStore((s) => s.add)
 
 	return (
 		<Card>

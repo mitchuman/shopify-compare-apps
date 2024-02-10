@@ -1,4 +1,4 @@
-import { useHandleStore } from '@/lib/store'
+import { useAppStore } from '@/lib/store'
 import {
 	Link,
 	ResourceItem,
@@ -9,8 +9,8 @@ import { ArrowDownIcon, ArrowUpIcon } from '@shopify/polaris-icons'
 import type { FunctionComponent, SVGProps } from 'react'
 
 export default function AppListItem({ app }: Props) {
-	const handles = useHandleStore((s) => s.handles)
-	const reorder = useHandleStore((s) => s.reorder)
+	const handles = useAppStore((s) => s.handles)
+	const reorder = useAppStore((s) => s.reorder)
 
 	const moveActions: Array<
 		DisableableAction & { icon: FunctionComponent<SVGProps<SVGSVGElement>> }

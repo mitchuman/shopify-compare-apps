@@ -7,7 +7,6 @@ import {
 	Box,
 	Link,
 	ResourceList,
-	Text,
 	ResourceListProps,
 } from '@shopify/polaris'
 import AppListItem from './AppListItem'
@@ -40,14 +39,14 @@ export default function AppList({}: Props) {
 				renderItem={(app) => <AppListItem app={app} />}
 				emptyState={
 					<Box padding="500">
-						<Text as="p">
-							Start by adding apps to compare. You can find the URL or slug on
-							the{' '}
+						<p>Start by adding Shopify App URLs to compare.</p>
+						<p>
+							Search for apps in the{' '}
 							<Link url="https://app.shopify.com" target="_blank">
 								Shopify App Store
 							</Link>
 							.
-						</Text>
+						</p>
 					</Box>
 				}
 			></ResourceList>

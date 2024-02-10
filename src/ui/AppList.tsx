@@ -4,10 +4,10 @@ import { useAppStore } from '@/lib/store'
 import { useState } from 'react'
 import {
 	Card,
-	Box,
 	Link,
 	ResourceList,
 	ResourceListProps,
+	EmptyState,
 } from '@shopify/polaris'
 import AppListItem from './AppListItem'
 import { DeleteIcon } from '@shopify/polaris-icons'
@@ -38,18 +38,20 @@ export default function AppList({}: Props) {
 				]}
 				renderItem={(app) => <AppListItem app={app} />}
 				emptyState={
-					<Box padding="500">
-						<p>Start by adding Shopify App URLs to compare.</p>
-						<p>
-							Search for apps in the{' '}
-							<Link url="https://app.shopify.com" target="_blank">
-								Shopify App Store
-							</Link>
-							.
-						</p>
-					</Box>
+					<EmptyState
+						image="/pixel-shopify.png"
+						heading="Start by adding Shopify App URLs to compare"
+						footerContent={
+							<p>
+								Search for apps in the{' '}
+								<Link monochrome url="https://app.shopify.com" target="_blank">
+									Shopify App Store
+								</Link>
+							</p>
+						}
+					/>
 				}
-			></ResourceList>
+			/>
 		</Card>
 	)
 }

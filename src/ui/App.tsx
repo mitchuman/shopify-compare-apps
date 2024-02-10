@@ -1,7 +1,15 @@
 'use client'
 
 import { useAppStore } from '@/lib/store'
-import { AppProvider, Box, InlineError, Layout, Page } from '@shopify/polaris'
+import {
+	AppProvider,
+	Banner,
+	BlockStack,
+	Box,
+	InlineError,
+	Layout,
+	Page,
+} from '@shopify/polaris'
 import { CodeIcon } from '@shopify/polaris-icons'
 import Result from '@/ui/Result'
 import AppAdder from '@/ui/AppAdder'
@@ -18,7 +26,7 @@ export default function App({ metadata }: Props) {
 				title={metadata.title as string}
 				additionalMetadata={metadata.description?.replace(/\.$/, '')}
 				primaryAction={{
-					content: 'Visit the Shopify App Store',
+					content: 'Shopify App Store',
 					url: 'https://app.shopify.com',
 					target: '_blank',
 				}}
@@ -44,16 +52,16 @@ export default function App({ metadata }: Props) {
 					</Layout.Section>
 
 					<Layout.Section variant="oneHalf">
-						<AppList />
-
-						{handles.length > 4 && (
-							<Box padding="200">
-								<InlineError
-									message="Can only compare up to 4 apps at a time."
-									fieldID="url"
+						<BlockStack gap="200">
+							{handles.length > 4 && (
+								<Banner
+									title="Can only compare up to 4 apps at a time."
+									tone="warning"
 								/>
-							</Box>
-						)}
+							)}
+
+							<AppList />
+						</BlockStack>
 					</Layout.Section>
 
 					<Layout.Section>

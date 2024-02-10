@@ -1,12 +1,6 @@
 import { useAppStore } from '@/lib/store'
-import {
-	Button,
-	Card,
-	Form,
-	FormLayout,
-	InlineError,
-	TextField,
-} from '@shopify/polaris'
+import { Button, Card, Form, FormLayout, TextField } from '@shopify/polaris'
+import { AppsIcon } from '@shopify/polaris-icons'
 import { useState } from 'react'
 
 export default function AppAdder({}: Props) {
@@ -51,13 +45,14 @@ export default function AppAdder({}: Props) {
 						placeholder="https://apps.shopify.com/search-and-discovery"
 						value={$value}
 						onChange={(e) => set$value(e)}
+						error={$error}
+						clearButton
+						onClearButtonClick={() => set$value('')}
 						type="url"
 						autoComplete="off"
 					/>
 
-					{!!$error && <InlineError message={$error} fieldID="url" />}
-
-					<Button disabled={!$value} submit>
+					<Button icon={AppsIcon} disabled={!$value} submit fullWidth>
 						Add
 					</Button>
 				</FormLayout>

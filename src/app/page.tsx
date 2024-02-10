@@ -8,8 +8,6 @@ import AppList from '@/ui/AppList'
 import Footer from '@/ui/Footer'
 
 export default function page() {
-	const url = 'https://apps.shopify.com/compare?handles='
-
 	return (
 		<AppProvider i18n={{}}>
 			<Page
@@ -33,7 +31,7 @@ export default function page() {
 			>
 				<Layout>
 					<Layout.Section>
-						<Result url={url} />
+						<Result />
 					</Layout.Section>
 
 					<Layout.Section variant="oneHalf">

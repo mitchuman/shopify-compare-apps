@@ -1,7 +1,17 @@
+import { useHandleStore } from '@/lib/store'
 import { CalloutCard, Link } from '@shopify/polaris'
 import { ClipboardIcon } from '@shopify/polaris-icons'
 
-export default function Result({ url }: Props) {
+const BASE_URL = 'https://apps.shopify.com/compare'
+
+export default function Result({}: Props) {
+	const handles = useHandleStore((s) => s.handles)
+
+	const url = new URL(BASE_URL)
+	url.searchParams.set('handles', handles.map((h) => h.handle).join(','))
+
+	const finalUrl = url.toString()
+
 	return (
 		<CalloutCard
 			title="Comparison URL"
@@ -9,18 +19,14 @@ export default function Result({ url }: Props) {
 			primaryAction={{
 				content: 'Copy URL',
 				icon: ClipboardIcon,
-				onAction: () => {
-					navigator.clipboard.writeText(url)
-				},
+				onAction: () => navigator.clipboard.writeText(finalUrl),
 			}}
 		>
-			<Link url={url} target="_blank">
-				{url}
+			<Link url={finalUrl} target="_blank">
+				{finalUrl}
 			</Link>
 		</CalloutCard>
 	)
 }
 
-type Props = {
-	url: string
-}
+type Props = {}

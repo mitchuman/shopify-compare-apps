@@ -10,9 +10,9 @@ import {
 import { useState } from 'react'
 
 export default function AppAdder({}: Props) {
-	const [$value, set$value] = useState('https://apps.shopify.com/zipifypages')
+	const [$value, set$value] = useState<string | undefined>()
 	const [$error, set$error] = useState<string | false>(false)
-	const addHandle = useHandleStore((s) => s.addHandle)
+	const add = useHandleStore((s) => s.add)
 
 	return (
 		<Card>
@@ -21,7 +21,9 @@ export default function AppAdder({}: Props) {
 					if (!(e.target instanceof HTMLFormElement)) return
 
 					const formData = new FormData(e.target)
-					const { pathname, host } = new URL(formData.get('url') as string)
+					const { pathname, host, origin } = new URL(
+						formData.get('url') as string,
+					)
 
 					if (!pathname) {
 						set$error('')
@@ -34,8 +36,8 @@ export default function AppAdder({}: Props) {
 					}
 
 					const handle = pathname.replace(/^\/+|\/+$/g, '')
-					addHandle({
-						url: formData.get('url') as string,
+					add({
+						url: origin + pathname,
 						handle,
 					})
 					set$value('')

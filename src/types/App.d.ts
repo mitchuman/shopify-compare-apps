@@ -1,6 +1,6 @@
 declare global {
 	namespace App {
-		type Handle = {
+		type App = {
 			url: string
 			handle: string
 		}

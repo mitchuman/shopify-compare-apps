@@ -1,24 +1,44 @@
 import { create } from 'zustand'
+import type { ResourceListProps } from '@shopify/polaris'
 
 type Props = {
-	handles: App.Handle[]
-	addHandle: (handle: App.Handle) => void
-	removeHandles: (handle: App.Handle[]) => void
+	handles: App.App[]
+	add: (handle: App.App) => void
+	removeHandles: (handles: ResourceListProps['selectedItems']) => void
+	reorder: (handle: App.App, amount: number) => void
 }
 
 export const useHandleStore = create<Props>((set, get) => ({
 	handles: [],
 
-	addHandle: (handle: App.Handle) =>
+	add: (app: App.App) =>
 		set((state) => {
-			const hasDupliate = state.handles.some((h) => h.handle === handle.handle)
+			const hasDupliate = state.handles.some((h) => h.handle === app.handle)
 
 			if (hasDupliate) return state
-			return { handles: [...state.handles, handle] }
+			return { handles: [...state.handles, app] }
 		}),
 
-	removeHandles: (handle: App.Handle[]) =>
+	removeHandles: (apps: ResourceListProps['selectedItems']) =>
 		set((state) => {
-			return { handles: state.handles.filter((h) => !handle.includes(h)) }
+			const handles = state.handles.filter((h) => !apps?.includes(h.handle))
+			return { handles }
 		}),
+
+	reorder: (app: App.App, amount: number) => {
+		set((state) => {
+			const currentIndex = state.handles.findIndex(
+				(h) => h.handle === app.handle,
+			)
+			const newIndex = currentIndex + amount
+
+			if (newIndex < 0 || newIndex >= state.handles.length) return state
+
+			const handles = [...state.handles]
+			handles[currentIndex] = handles[newIndex]
+			handles[newIndex] = app
+
+			return { handles }
+		})
+	},
 }))

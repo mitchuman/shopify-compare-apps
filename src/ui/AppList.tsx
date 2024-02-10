@@ -6,9 +6,13 @@ import {
 	ResourceList,
 	Text,
 } from '@shopify/polaris'
+import { useState } from 'react'
 
 export default function AppList({}: Props) {
 	const handles = useHandleStore((s) => s.handles)
+	const removeHandles = useHandleStore((s) => s.removeHandles)
+
+	const [$selected, set$selected] = useState<App.Handle[]>([])
 
 	return (
 		<Card>
@@ -20,6 +24,16 @@ export default function AppList({}: Props) {
 							<Text as="h3">{handle}</Text>
 						</ResourceItem>
 					)}
+					selectedItems={$selected}
+					onSelectionChange={set$selected}
+					bulkActions={[
+						{
+							content: 'Remove',
+							onAction: () => {
+								removeHandles($selected)
+							},
+						},
+					]}
 				/>
 			) : (
 				<FooterHelp>

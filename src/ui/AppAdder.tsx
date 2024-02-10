@@ -10,7 +10,7 @@ import {
 import { useState } from 'react'
 
 export default function AppAdder({}: Props) {
-	const [$value, set$value] = useState('')
+	const [$value, set$value] = useState('https://apps.shopify.com/zipifypages')
 	const [$error, set$error] = useState<string | false>(false)
 	const addHandle = useHandleStore((s) => s.addHandle)
 

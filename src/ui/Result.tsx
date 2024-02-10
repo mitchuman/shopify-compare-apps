@@ -15,7 +15,7 @@ export default function Result({}: Props) {
 	return (
 		<CalloutCard
 			title="Comparison URL"
-			illustration="https://cdn.shopify.com/shopifycloud/shopify_dev/assets/icons/48/shopify-2x-533cfc728abb341ee379217370a0c5be8d1a555e47eae85abe657675f367a37d.png"
+			illustration="/pixel-shopify.png"
 			primaryAction={{
 				content: 'Copy URL',
 				icon: ClipboardIcon,

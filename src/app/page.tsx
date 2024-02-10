@@ -11,7 +11,7 @@ export default function page() {
 	return (
 		<AppProvider i18n={{}}>
 			<Page
-				title="Shopify Compare Apps"
+				title="Shopify App Comparer"
 				primaryAction={{
 					content: 'Visit the Shopify App Store',
 					url: 'https://app.shopify.com',

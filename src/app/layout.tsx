@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import '@shopify/polaris/build/esm/styles.css'
 
 export const metadata: Metadata = {
-	title: 'Shopify Compare Apps',
+	title: 'Shopify App Comparer',
 	description: '',
 }
 

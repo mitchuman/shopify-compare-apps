@@ -4,6 +4,11 @@ declare global {
 			url: string
 			handle: string
 		}
+
+		type Suggestion = {
+			title: string
+			url: string
+		}
 	}
 }
 

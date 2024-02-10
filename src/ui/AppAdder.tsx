@@ -1,7 +1,30 @@
 import { useAppStore } from '@/lib/store'
-import { Button, Card, Form, FormLayout, TextField } from '@shopify/polaris'
+import {
+	Button,
+	Card,
+	Form,
+	FormLayout,
+	InlineStack,
+	Tag,
+	TextField,
+} from '@shopify/polaris'
 import { AppsIcon } from '@shopify/polaris-icons'
 import { useState } from 'react'
+
+const suggestions: App.Suggestion[] = [
+	{
+		title: 'Search & Discovery',
+		url: 'https://apps.shopify.com/search-and-discovery',
+	},
+	{
+		title: 'Klaviyo',
+		url: 'https://apps.shopify.com/klaviyo-email-marketing',
+	},
+	{
+		title: 'Mailchimp',
+		url: 'https://apps.shopify.com/mailchimp',
+	},
+]
 
 export default function AppAdder({}: Props) {
 	const [$value, set$value] = useState<string | undefined>()
@@ -29,10 +52,9 @@ export default function AppAdder({}: Props) {
 						return
 					}
 
-					const handle = pathname.replace(/^\/+|\/+$/g, '')
 					add({
 						url: origin + pathname,
-						handle,
+						handle: pathname.replace(/^\/+|\/+$/g, ''),
 					})
 					set$value('')
 					set$error(false)
@@ -42,12 +64,24 @@ export default function AppAdder({}: Props) {
 					<TextField
 						name="url"
 						label="App URL"
-						placeholder="https://apps.shopify.com/search-and-discovery"
+						verticalContent={
+							<InlineStack gap="100">
+								{suggestions.map((suggestion) => (
+									<Tag
+										key={suggestion.url}
+										onClick={() => set$value(suggestion.url)}
+									>
+										{suggestion.title}
+									</Tag>
+								))}
+							</InlineStack>
+						}
 						value={$value}
 						onChange={(e) => set$value(e)}
 						error={$error}
 						clearButton
 						onClearButtonClick={() => set$value('')}
+						placeholder="https://apps.shopify.com/..."
 						type="url"
 						autoComplete="off"
 					/>

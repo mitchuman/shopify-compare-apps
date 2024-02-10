@@ -32,6 +32,8 @@ export default function Result({}: Props) {
 					<Badge tone={remainder >= 0 ? 'success' : 'attention'}>
 						{remainderString}
 					</Badge>
+
+					{handles.length < 2 && <Badge tone="critical">Minimum 2 apps</Badge>}
 				</InlineStack>
 
 				<InlineStack blockAlign="center" gap="200">

@@ -5,7 +5,7 @@ import { InlineStack, Tag } from '@shopify/polaris'
 import { useSuggestionStore } from './store'
 
 export default function SuggestionList({}: Props) {
-	const handles = useAppStore((s) => s.handles)
+	const apps = useAppStore((s) => s.apps)
 	const add = useAppStore((s) => s.add)
 	const suggestions = useSuggestionStore((s) => s.suggestions)
 	const $selected = useSuggestionStore((s) => s.selected)
@@ -18,7 +18,7 @@ export default function SuggestionList({}: Props) {
 		<InlineStack gap="100">
 			{filtered.map((suggestion) => (
 				<Tag
-					disabled={handles.some((app) => app.handle === suggestion.handle)}
+					disabled={apps.some((app) => app.handle === suggestion.handle)}
 					key={suggestion.handle}
 					onClick={() => {
 						add({

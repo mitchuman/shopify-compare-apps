@@ -11,10 +11,10 @@ import {
 import { ClipboardIcon } from '@shopify/polaris-icons'
 
 export default function Result({}: Props) {
-	const handles = useAppStore((state) => state.handles)
-	const finalUrl = getCompareUrl(handles)
+	const apps = useAppStore((state) => state.apps)
+	const finalUrl = getCompareUrl(apps)
 
-	const remainder = 4 - handles.length
+	const remainder = 4 - apps.length
 	const remainderString = [
 		Math.abs(remainder),
 		Math.abs(remainder) === 1 ? 'slot' : 'slots',
@@ -26,7 +26,7 @@ export default function Result({}: Props) {
 			<BlockStack gap="200">
 				<InlineStack blockAlign="end" gap="200">
 					<Text as="h1" variant="headingMd">
-						Comparing {handles.length} {handles.length === 1 ? 'app' : 'apps'}
+						Comparing {apps.length} {apps.length === 1 ? 'app' : 'apps'}
 					</Text>
 
 					<InlineStack blockAlign="end" gap="200">
@@ -34,9 +34,7 @@ export default function Result({}: Props) {
 							{remainderString}
 						</Badge>
 
-						{handles.length < 2 && (
-							<Badge tone="critical">Minimum 2 apps</Badge>
-						)}
+						{apps.length < 2 && <Badge tone="critical">Minimum 2 apps</Badge>}
 					</InlineStack>
 				</InlineStack>
 

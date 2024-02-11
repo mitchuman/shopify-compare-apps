@@ -9,7 +9,7 @@ import { ArrowDownIcon, ArrowUpIcon } from '@shopify/polaris-icons'
 import type { FunctionComponent, SVGProps } from 'react'
 
 export default function AppListItem({ app }: Props) {
-	const handles = useAppStore((s) => s.handles)
+	const apps = useAppStore((s) => s.apps)
 	const reorder = useAppStore((s) => s.reorder)
 
 	const moveActions: Array<
@@ -31,7 +31,7 @@ export default function AppListItem({ app }: Props) {
 		<ResourceItem
 			id={app.handle}
 			onClick={() => {}}
-			shortcutActions={handles.length > 1 ? moveActions : []}
+			shortcutActions={apps.length > 1 ? moveActions : []}
 		>
 			<Text as="h3" fontWeight="bold">
 				{app.handle}

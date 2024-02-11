@@ -10,7 +10,7 @@ import Footer from '@/lib/Footer'
 import type { Metadata } from 'next'
 
 export default function App({ metadata }: Props) {
-	const handles = useAppStore((state) => state.handles)
+	const apps = useAppStore((state) => state.apps)
 
 	return (
 		<AppProvider i18n={{}}>
@@ -45,7 +45,7 @@ export default function App({ metadata }: Props) {
 
 					<Layout.Section variant="oneHalf">
 						<BlockStack gap="200">
-							{handles.length > 4 && (
+							{apps.length > 4 && (
 								<Banner
 									title="Can only compare up to 4 apps at a time."
 									tone="warning"

@@ -13,7 +13,7 @@ import AppListItem from './AppListItem'
 import { DeleteIcon } from '@shopify/polaris-icons'
 
 export default function AppList({}: Props) {
-	const handles = useAppStore((s) => s.handles)
+	const apps = useAppStore((s) => s.apps)
 	const removeHandles = useAppStore((s) => s.removeHandles)
 
 	const [$selected, set$selected] =
@@ -25,7 +25,7 @@ export default function AppList({}: Props) {
 				showHeader
 				headerContent="Current list of apps"
 				resourceName={{ singular: 'app', plural: 'apps' }}
-				items={handles}
+				items={apps}
 				idForItem={(app) => app.handle}
 				selectedItems={$selected}
 				onSelectionChange={set$selected}

@@ -2,52 +2,49 @@ import { create } from 'zustand'
 import type { ResourceListProps } from '@shopify/polaris'
 
 type Props = {
-	handles: App.App[]
+	apps: App.App[]
 	add: (handle: App.App) => void
-	removeHandles: (handles: ResourceListProps['selectedItems']) => void
-	reorder: (handle: App.App, amount: number) => void
+	removeHandles: (apps: ResourceListProps['selectedItems']) => void
+	reorder: (app: App.App, amount: number) => void
 }
 
 export const useAppStore = create<Props>((set, get) => ({
-	handles: [],
+	apps: [],
 
 	add: (app: App.App) =>
 		set((state) => {
-			const hasDupliate = state.handles.some((h) => h.handle === app.handle)
+			const hasDupliate = state.apps.some((h) => h.handle === app.handle)
 
 			if (hasDupliate) return state
-			return { handles: [...state.handles, app] }
+			return { apps: [...state.apps, app] }
 		}),
 
-	removeHandles: (apps: ResourceListProps['selectedItems']) =>
-		set((state) => {
-			const handles = state.handles.filter((h) => !apps?.includes(h.handle))
-			return { handles }
-		}),
+	removeHandles: (target: ResourceListProps['selectedItems']) =>
+		set((state) => ({
+			apps: state.apps.filter((h) => !target?.includes(h.handle)),
+		})),
 
 	reorder: (app: App.App, amount: number) => {
 		set((state) => {
-			const currentIndex = state.handles.findIndex(
-				(h) => h.handle === app.handle,
-			)
+			const currentIndex = state.apps.findIndex((h) => h.handle === app.handle)
 			const newIndex = currentIndex + amount
 
-			if (newIndex < 0 || newIndex >= state.handles.length) return state
+			if (newIndex < 0 || newIndex >= state.apps.length) return state
 
-			const handles = [...state.handles]
-			handles[currentIndex] = handles[newIndex]
-			handles[newIndex] = app
+			const apps = [...state.apps]
+			apps[currentIndex] = apps[newIndex]
+			apps[newIndex] = app
 
-			return { handles }
+			return { apps: apps }
 		})
 	},
 }))
 
 const BASE_URL = 'https://apps.shopify.com/compare'
 
-export function getCompareUrl(handles: App.App[]) {
+export function getCompareUrl(apps: App.App[]) {
 	const url = new URL(BASE_URL)
-	url.searchParams.set('handles', handles.map((h) => h.handle).join(','))
+	url.searchParams.set('handles', apps.map((h) => h.handle).join(','))
 
 	return url.toString()
 }

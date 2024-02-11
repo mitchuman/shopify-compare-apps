@@ -59,7 +59,6 @@ export default function AppAdder({}: Props) {
 					<TextField
 						name="url"
 						label="App URL"
-						prefix="URL:"
 						value={$value}
 						onChange={set$value}
 						error={$error}

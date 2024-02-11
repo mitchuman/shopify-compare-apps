@@ -1,10 +1,15 @@
 import { create } from 'zustand'
 
-type Catgeory = 'Shopify' | 'Email marketing' | 'Buy X Get Y'
+type Catgeory =
+	| 'Shopify'
+	| 'Subscriptions'
+	| 'Email marketing'
+	| 'Reviews'
+	| 'Buy X Get Y'
 
 type Suggestion = {
 	title: string
-	url: string
+	handle: string
 	category: Catgeory[]
 }
 
@@ -18,52 +23,67 @@ type Props = {
 const suggestions: Suggestion[] = [
 	{
 		title: 'Search & Discovery',
-		url: 'https://apps.shopify.com/search-and-discovery',
+		handle: 'search-and-discovery',
 		category: ['Shopify'],
 	},
 	{
 		title: 'Translate & Adapt',
-		url: 'https://apps.shopify.com/translate-and-adapt',
+		handle: 'translate-and-adapt',
 		category: ['Shopify'],
 	},
 	{
 		title: 'Shopify Email',
-		url: 'https://apps.shopify.com/shopify-email',
+		handle: 'shopify-email',
 		category: ['Shopify', 'Email marketing'],
 	},
 	{
 		title: 'Buy Button channel',
-		url: 'https://apps.shopify.com/buy-button',
+		handle: 'buy-button',
 		category: ['Shopify'],
 	},
 	{
+		title: 'Shopify Subscriptions',
+		handle: 'shopify-subscriptions',
+		category: ['Shopify', 'Subscriptions'],
+	},
+	{
 		title: 'Klaviyo',
-		url: 'https://apps.shopify.com/klaviyo-email-marketing',
+		handle: 'klaviyo-email-marketing',
 		category: ['Email marketing'],
 	},
 	{
 		title: 'Mailchimp',
-		url: 'https://apps.shopify.com/mailchimp',
+		handle: 'mailchimp',
 		category: ['Email marketing'],
 	},
 	{
 		title: 'Yotpo',
-		url: 'https://apps.shopify.com/smsbump',
+		handle: 'smsbump',
 		category: ['Email marketing'],
 	},
 	{
+		title: 'Judge.me',
+		handle: 'judgeme',
+		category: ['Reviews'],
+	},
+	{
+		title: 'Yotpo',
+		handle: 'yotpo-social-reviews',
+		category: ['Reviews'],
+	},
+	{
 		title: 'BOGO+',
-		url: 'https://apps.shopify.com/discos-smart-bogo-cart-upsell',
+		handle: 'discos-smart-bogo-cart-upsell',
 		category: ['Buy X Get Y'],
 	},
 	{
 		title: 'EasyGift',
-		url: 'https://apps.shopify.com/gifter-cart-auto-include',
+		handle: 'gifter-cart-auto-include',
 		category: ['Buy X Get Y'],
 	},
 	{
 		title: 'BOGOS.io',
-		url: 'https://apps.shopify.com/freegifts',
+		handle: 'freegifts',
 		category: ['Buy X Get Y'],
 	},
 ]

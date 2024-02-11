@@ -40,19 +40,17 @@ export default function Result({}: Props) {
 					</InlineStack>
 				</InlineStack>
 
-				{!finalUrl.endsWith('=') && (
-					<InlineStack blockAlign="center" gap="200">
-						<Button
-							icon={ClipboardIcon}
-							onClick={() => navigator.clipboard.writeText(finalUrl)}
-							accessibilityLabel="Copy URL to clipboard"
-						/>
+				<InlineStack blockAlign="center" gap="200">
+					<Button
+						icon={ClipboardIcon}
+						onClick={() => navigator.clipboard.writeText(finalUrl)}
+						accessibilityLabel="Copy URL to clipboard"
+					/>
 
-						<Link url={finalUrl} target="_blank">
-							{finalUrl}
-						</Link>
-					</InlineStack>
-				)}
+					<Link url={finalUrl} target="_blank">
+						{finalUrl}
+					</Link>
+				</InlineStack>
 
 				<Bleed marginBlockEnd="400" marginInline="400">
 					<Box background="bg-surface-secondary" padding="400">

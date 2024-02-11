@@ -1,26 +1,13 @@
 import { create } from 'zustand'
 
-type Catgeory =
-	| 'Shopify'
-	| 'Subscriptions'
-	| 'Email marketing'
-	| 'Reviews'
-	| 'Buy X Get Y'
-
-type Suggestion = {
-	title: string
-	handle: string
-	category: Catgeory[]
-}
-
 type Props = {
-	categories: Catgeory[]
-	suggestions: Suggestion[]
-	selected: Catgeory
-	setSelected: (selected: Catgeory) => void
+	categories: App.Category[]
+	suggestions: App.Suggestion[]
+	selected: App.Category
+	setSelected: (selected: App.Category) => void
 }
 
-const suggestions: Suggestion[] = [
+const suggestions: App.Suggestion[] = [
 	{
 		title: 'Search & Discovery',
 		handle: 'search-and-discovery',
@@ -45,6 +32,16 @@ const suggestions: Suggestion[] = [
 		title: 'Shopify Subscriptions',
 		handle: 'shopify-subscriptions',
 		category: ['Shopify', 'Subscriptions'],
+	},
+	{
+		title: 'Recharge Subscriptions',
+		handle: 'subscription-payments',
+		category: ['Subscriptions'],
+	},
+	{
+		title: 'Appstle℠',
+		handle: 'subscriptions-by-appstle',
+		category: ['Subscriptions'],
 	},
 	{
 		title: 'Klaviyo',
@@ -96,5 +93,5 @@ export const useSuggestionStore = create<Props>((set) => ({
 	suggestions,
 	categories,
 	selected: 'Shopify',
-	setSelected: (selected: Catgeory) => set({ selected }),
+	setSelected: (selected: App.Category) => set({ selected }),
 }))

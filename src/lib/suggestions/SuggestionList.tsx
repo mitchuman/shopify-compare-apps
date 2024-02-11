@@ -22,6 +22,7 @@ export default function SuggestionList({}: Props) {
 					key={suggestion.handle}
 					onClick={() => {
 						add({
+							title: suggestion.title,
 							url: 'https://apps.shopify.com/' + suggestion.handle,
 							handle: suggestion.handle,
 						})

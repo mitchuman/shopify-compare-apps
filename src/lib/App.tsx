@@ -29,9 +29,9 @@ export default function App({ metadata }: Props) {
 						url: 'https://github.com/mitchuman/shopify-compare-apps',
 						target: '_blank',
 					},
-					// {
-					// 	content: 'Buy me a coffee',
-					// },
+					//{
+					//	content: 'Buy me a coffee',
+					//},
 				]}
 			>
 				<Layout>

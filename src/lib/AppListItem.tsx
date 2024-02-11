@@ -34,7 +34,7 @@ export default function AppListItem({ app }: Props) {
 			shortcutActions={apps.length > 1 ? moveActions : []}
 		>
 			<Text as="h3" fontWeight="bold">
-				{app.handle}
+				{app.title || app.handle}
 			</Text>
 			<Link url={app.url} target="_blank">
 				{app.url}

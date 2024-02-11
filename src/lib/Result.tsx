@@ -29,11 +29,15 @@ export default function Result({}: Props) {
 						Comparing {handles.length} {handles.length === 1 ? 'app' : 'apps'}
 					</Text>
 
-					<Badge tone={remainder >= 0 ? 'success' : 'attention'}>
-						{remainderString}
-					</Badge>
+					<InlineStack blockAlign="end" gap="200">
+						<Badge tone={remainder >= 0 ? 'success' : 'attention'}>
+							{remainderString}
+						</Badge>
 
-					{handles.length < 2 && <Badge tone="critical">Minimum 2 apps</Badge>}
+						{handles.length < 2 && (
+							<Badge tone="critical">Minimum 2 apps</Badge>
+						)}
+					</InlineStack>
 				</InlineStack>
 
 				<InlineStack blockAlign="center" gap="200">

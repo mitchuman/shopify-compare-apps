@@ -1,4 +1,4 @@
-import App from '@/ui/App'
+import App from '@/lib/App'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {

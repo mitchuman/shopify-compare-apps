@@ -1,34 +1,25 @@
+'use client'
+
 import { useAppStore } from '@/lib/store'
+import { useAdderStore } from './store'
 import {
 	Button,
 	Card,
+	Divider,
 	Form,
 	FormLayout,
-	InlineStack,
-	Tag,
+	Text,
 	TextField,
 } from '@shopify/polaris'
 import { AppsIcon } from '@shopify/polaris-icons'
-import { useState } from 'react'
-
-const suggestions: App.Suggestion[] = [
-	{
-		title: 'Search & Discovery',
-		url: 'https://apps.shopify.com/search-and-discovery',
-	},
-	{
-		title: 'Klaviyo',
-		url: 'https://apps.shopify.com/klaviyo-email-marketing',
-	},
-	{
-		title: 'Mailchimp',
-		url: 'https://apps.shopify.com/mailchimp',
-	},
-]
+import Suggestions from '@/lib/suggestions/Suggestions'
 
 export default function AppAdder({}: Props) {
-	const [$value, set$value] = useState<string | undefined>()
-	const [$error, set$error] = useState<string | false>(false)
+	const $value = useAdderStore((s) => s.value)
+	const set$value = useAdderStore((s) => s.setValue)
+	const $error = useAdderStore((s) => s.error)
+	const set$error = useAdderStore((s) => s.setError)
+
 	const add = useAppStore((s) => s.add)
 
 	return (
@@ -61,34 +52,39 @@ export default function AppAdder({}: Props) {
 				}}
 			>
 				<FormLayout>
+					<Text as="h2" variant="headingMd">
+						Add an app to compare
+					</Text>
+
 					<TextField
 						name="url"
 						label="App URL"
-						verticalContent={
-							<InlineStack gap="100">
-								{suggestions.map((suggestion) => (
-									<Tag
-										key={suggestion.url}
-										onClick={() => set$value(suggestion.url)}
-									>
-										{suggestion.title}
-									</Tag>
-								))}
-							</InlineStack>
-						}
+						prefix="URL:"
 						value={$value}
-						onChange={(e) => set$value(e)}
+						onChange={set$value}
 						error={$error}
 						clearButton
 						onClearButtonClick={() => set$value('')}
 						placeholder="https://apps.shopify.com/..."
 						type="url"
 						autoComplete="off"
+						connectedRight={
+							<Button
+								icon={AppsIcon}
+								variant="primary"
+								size="large"
+								disabled={!$value}
+								fullWidth
+								submit
+							>
+								Add app
+							</Button>
+						}
 					/>
 
-					<Button icon={AppsIcon} disabled={!$value} submit fullWidth>
-						Add
-					</Button>
+					<Divider />
+
+					<Suggestions />
 				</FormLayout>
 			</Form>
 		</Card>

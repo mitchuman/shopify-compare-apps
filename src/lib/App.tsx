@@ -1,20 +1,12 @@
 'use client'
 
 import { useAppStore } from '@/lib/store'
-import {
-	AppProvider,
-	Banner,
-	BlockStack,
-	Box,
-	InlineError,
-	Layout,
-	Page,
-} from '@shopify/polaris'
+import { AppProvider, Banner, BlockStack, Layout, Page } from '@shopify/polaris'
 import { CodeIcon } from '@shopify/polaris-icons'
-import Result from '@/ui/Result'
-import AppAdder from '@/ui/AppAdder'
-import AppList from '@/ui/AppList'
-import Footer from '@/ui/Footer'
+import Result from '@/lib/Result'
+import AppAdder from '@/lib/adder/AppAdder'
+import AppList from '@/lib/AppList'
+import Footer from '@/lib/Footer'
 import type { Metadata } from 'next'
 
 export default function App({ metadata }: Props) {

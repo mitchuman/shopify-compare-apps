@@ -23,7 +23,7 @@ export default function AppList({}: Props) {
 		<Card padding="0">
 			<ResourceList
 				showHeader
-				headerContent="Apps to compare"
+				headerContent="Current list of apps"
 				resourceName={{ singular: 'app', plural: 'apps' }}
 				items={handles}
 				idForItem={(app) => app.handle}
